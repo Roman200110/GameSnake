@@ -2,7 +2,7 @@
 
 int main()
 {
-	Game a(cv::Mat(1000, 1000, CV_8UC3), 20, false, 1);
+	Game a(cv::Mat(1000, 1000, CV_8UC3), 40, false, 1);
 	cv::Mat img(1000, 1000, CV_8UC3);
 	img.setTo(0);
 	a.coordinatesfruit();
