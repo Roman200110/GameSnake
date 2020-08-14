@@ -33,43 +33,46 @@ void Game::coordinatesfruit()
 	}
 }
 
-void Game::input()
+void Game::input(int msecs)
 {
-	if (_kbhit())
+	switch (cv::waitKey(msecs))
 	{
-		switch (_getch())
+	case 'a':
+	case 'A':
+		if (dir1 == RIGHT)
 		{
-		case 'a':
-			if (dir1 == RIGHT)
-			{
-				break;
-			}
-			dir = LEFT;
-			break;
-		case 'd':
-			if (dir1 == LEFT)
-			{
-				break;
-			}
-			dir = RIGHT;
-			break;
-		case 's':
-			if (dir1 == UP)
-			{
-				break;
-			}
-			dir = DOWN;
-			break;
-		case 'w':
-			if (dir1 == DOWN)
-			{
-				break;
-			}
-			dir = UP;
 			break;
 		}
-		dir1 = dir;
+		dir = LEFT;
+		break;
+	case 'd':
+	case 'D':
+		if (dir1 == LEFT)
+		{
+			break;
+		}
+		dir = RIGHT;
+		break;
+	case 's':
+	case 'S':
+		if (dir1 == UP)
+		{
+			break;
+		}
+		dir = DOWN;
+		break;
+	case 'w':
+	case 'W':
+		if (dir1 == DOWN)
+		{
+			break;
+		}
+		dir = UP;
+		break;
+	default: return;
 	}
+	dir1 = dir;
+	
 }
 
 void Game::logic()
@@ -84,6 +87,15 @@ void Game::logic()
 		if (sqrt(pow(m_snake[0].x - m_fruit[i].x * m_scale, 2) + pow(m_snake[0].y - m_fruit[i].y * m_scale, 2)) <= 30)
 		{
 			m_fruit[i].NewFruit();
+			for (int j = 0; j < 100; j++)
+			{
+				
+				if (sqrt(pow(m_snake[0].x - m_fruit[i].x * m_scale, 2) + pow(m_snake[0].y - m_fruit[i].y * m_scale, 2)) <= 40)
+				{
+					m_fruit[i].NewFruit();
+					j = 0;
+				}
+			}
 			m_lengthSnake++;
 		}
 	}

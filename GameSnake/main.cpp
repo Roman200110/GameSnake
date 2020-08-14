@@ -16,13 +16,18 @@ int main()
 		{
 			tmplengthSnake += 4;
 			s -= 30;
+
+			if (s <= 10)
+			{
+				s = 10;
+			}
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(s));
-		a.input();
+
+		a.input(s);
 		a.logic();
 		img = a.DrawGame();
 		imshow("Game", img);
-		waitKey(10);
+		waitKey(1);
 	}
 	img.setTo(0);
 	putText(img, "GAME OVER", cv::Point(200, 500), 5, 5, cv::Vec3b(0, 255, 0), 4);

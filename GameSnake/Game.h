@@ -14,7 +14,7 @@ public:
 	float getGameover();
 	int getlengthSnake();
 	void coordinatesfruit();
-	void input();
+	void input(int msecs);
 	void logic();
 	cv::Mat DrawGame();
 private:
